@@ -1,0 +1,7 @@
+/* For information on how to create your own theme, please see:
+http://ionicframework.com/docs/theming/ */
+
+@layer reset, base, tokens, recipes, utilities;
+body{
+  background-color: aqua;
+}

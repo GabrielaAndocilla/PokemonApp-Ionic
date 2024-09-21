@@ -1,0 +1,7 @@
+{
+  "name": "my-pokedex-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
