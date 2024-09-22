@@ -1,47 +1,49 @@
-import { ResultSetHeader } from "mysql2";
-import connection from "../db";
-import Pokemon from "../models/pokemon.model";
-import IPokemonRepository from "./IPokemonRepository";
+import { ResultSetHeader, RowDataPacket } from "mysql2";
 
-class PokemonRepository implements IPokemonRepository {
+import { Pokemon } from "../../domain/entities/Pokemon";
+import IPokemonRepository from "../../domain/repositories/IPokemonRepository";
+import connection from "../db";
+
+class PokemonRepositoryMySql implements IPokemonRepository {
+
+  constructor(){}
 
   save(pokemon: Pokemon): Promise<Pokemon> {
     return new Promise((resolve,reject)=> {
-      console.log('create')
       connection.query<ResultSetHeader>("INSERT INTO pokemons (name, height) VALUES(?,?)",[pokemon.name, pokemon.height],(err, res) => {
         if (err) reject(err);
         else
           this.retrieveById(res.insertId)
-            .then((tutorial) => resolve(tutorial!))
+            .then((pokemon) => resolve(pokemon!))
             .catch(reject);
       })
     })
   }
 
   retrieveAll(searchParams: { name?: string; }): Promise<Pokemon[]> {
-    console.log('rretrieveAlle')
     let query: string = "SELECT * FROM pokemons";
 
     if (searchParams?.name)
       query += `WHERE LOWER(name) LIKE '%${searchParams.name}%'`
 
     return new Promise((resolve, reject) => {
-      connection.query<Pokemon[]>(query, (err, res) => {
+      connection.query<RowDataPacket[]>(query, (err, res) => {
+        console.log(res)
         if (err) reject(err);
-        else resolve(res);
+        else resolve(res as Pokemon[]);
       });
     });
   }
 
   retrieveById(pokemonId: number): Promise<Pokemon | undefined> {
-    console.log('retrieveById')
     return new Promise((resolve, reject) => {
-      connection.query<Pokemon[]>(
+      connection.query<RowDataPacket[]>(
         "SELECT * FROM pokemons WHERE id = ?",
         [pokemonId],
         (err, res) => {
+          console.log(res)
           if (err) reject(err);
-          else resolve(res?.[0]);
+          else resolve(res?.[0] as Pokemon);
         }
       );
     });
@@ -57,4 +59,4 @@ class PokemonRepository implements IPokemonRepository {
 
 }
 
-export default new PokemonRepository();
+export default PokemonRepositoryMySql;
