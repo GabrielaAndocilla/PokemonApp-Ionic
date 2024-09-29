@@ -8,3 +8,4 @@
 nodemon.txt
 .DS_Store
 /coverage
+/dist
