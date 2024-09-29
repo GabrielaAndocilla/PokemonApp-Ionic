@@ -6,9 +6,7 @@ import connection from "../db";
 
 class PokemonRepositoryMySql implements IPokemonRepository {
 
-  constructor(){
-    console.log('w')
-  }
+  constructor(){ }
 
   private insertMovementsAndAbilities(movements: string [], abilities: string[], id:number):Promise<void[]> {
     const insertAbilitiesPromises = abilities.map((abilityName: string) =>
@@ -17,7 +15,6 @@ class PokemonRepositoryMySql implements IPokemonRepository {
           "INSERT INTO abilities (pokemon_id, ability_name) VALUES (?, ?)",
           [id, abilityName],
           (err,res) => {
-            console.log('res insertAbilitiesPromises',res)
             if (err) rejectAbility(err);
             else resolveAbility();
           }
@@ -31,8 +28,6 @@ class PokemonRepositoryMySql implements IPokemonRepository {
         "INSERT INTO moves (pokemon_id, move_name) VALUES (?, ?)",
         [id, movementName],
         (err,res) => {
-          console.log('res insertMovementsPromises',res)
-          console.error(err)
           if (err) rejectMovement(err);
           else resolveMovement();
         }
@@ -59,25 +54,19 @@ class PokemonRepositoryMySql implements IPokemonRepository {
   }
 
   save(pokemon: Pokemon, userId:number): Promise<Pokemon> {
-    throw new Error("a");
-
-    console.log('entre')
     return new Promise((resolve, reject) => {
-      console.log('a')
       connection.query<ResultSetHeader>(
         "INSERT INTO pokemons (name, height,user_id) VALUES(?,?,?)",
         [pokemon.name, pokemon.height,userId],
         async (err, res) => {
-          console.log('res',res)
           if (err) {
-            console.log('err',err)
             return reject(err);
           }
           const pokemonId = res.insertId;
           const abilities = pokemon.abilities || [];
           const movements = pokemon.movements || [];
           await this.insertMovementsAndAbilities(movements,abilities,pokemonId)
-          resolve(pokemon)
+          return resolve(pokemon)
         }
       );
     });
@@ -88,10 +77,8 @@ class PokemonRepositoryMySql implements IPokemonRepository {
     let query: string = `SELECT id, name, height, is_favorite as isFavorite FROM pokemons WHERE user_id = ${user_id}`;
     if (searchParams?.name)
       query += ` and LOWER(name) LIKE '%${searchParams.name}%'`
-    console.log(query)
     return new Promise((resolve, reject) => {
       connection.query<RowDataPacket[]>(query, (err, res) => {
-        console.log(res)
         if (err) reject(err);
         else resolve(res as Pokemon[]);
       });
@@ -104,13 +91,11 @@ class PokemonRepositoryMySql implements IPokemonRepository {
         "SELECT * FROM pokemons WHERE id = ?",
         [pokemonId],
         (err, results) => {
-          if (err) {
-            reject(err);
-          } else if (results.length === 0) {
-            reject(new Error("Pokémon no encontrado"));
-          } else {
-            const pokemonRow: RowDataPacket= results[0];
-            const abilitiesQuery = new Promise<string[]>((resolveAbilities, rejectAbilities) => {
+          if (err) return reject(err);
+          if (results.length === 0) return reject(new Error("Pokémon no encontrado"));
+
+          const pokemonRow: RowDataPacket= results[0];
+          const abilitiesQuery = new Promise<string[]>((resolveAbilities, rejectAbilities) => {
               connection.query<RowDataPacket[]>(
                 "SELECT ability_name FROM abilities WHERE pokemon_id = ?",
                 [pokemonId],
@@ -121,7 +106,7 @@ class PokemonRepositoryMySql implements IPokemonRepository {
               );
             });
 
-            const movementsQuery = new Promise<string[]>((resolveMovements, rejectMovements) => {
+          const movementsQuery = new Promise<string[]>((resolveMovements, rejectMovements) => {
               connection.query<RowDataPacket[]>(
                 "SELECT move_name FROM moves WHERE pokemon_id = ?",
                 [pokemonId],
@@ -132,13 +117,13 @@ class PokemonRepositoryMySql implements IPokemonRepository {
               );
             });
 
-            Promise.all([abilitiesQuery, movementsQuery])
-              .then(([abilities, movements]) => {
-                const pokemon = new Pokemon(pokemonRow.id,pokemonRow.name, pokemonRow.height,abilities,movements, pokemonRow.is_favorite)
-                resolve(pokemon);
-              })
-              .catch(reject);
-          }
+          Promise.all([abilitiesQuery, movementsQuery])
+            .then(([abilities, movements]) => {
+              const pokemon = new Pokemon(pokemonRow.id,pokemonRow.name, pokemonRow.height,abilities,movements, pokemonRow.is_favorite)
+              resolve(pokemon);
+            })
+            .catch(reject);
+
         }
       );
     });
@@ -151,7 +136,7 @@ class PokemonRepositoryMySql implements IPokemonRepository {
         "UPDATE pokemons SET is_favorite = ? WHERE id = ? ",
         [status, pokemonId],
          (err, res) => {
-          if(err) return reject()
+          if(err) return reject(err)
           resolve()
         }
       );
@@ -166,30 +151,21 @@ class PokemonRepositoryMySql implements IPokemonRepository {
         [pokemon.name, pokemon.height, pokemon.id],
         async (err, res) => {
           try {
-            console.log('updating')
-            if (err) {
-              console.error(err)
-              reject(err);
-            } else {
-              await this.deleteMovementsAndAbilities(pokemon.id!)
-              const abilities = pokemon.abilities || [];
-              const movements = pokemon.movements || [];
-              await this.insertMovementsAndAbilities(movements,abilities,pokemon.id!)
-              return this.retrieveById(pokemon?.id!)
-              .then((updatedPokemon) => {
-                console.log({updatedPokemon})
-                return resolve(updatedPokemon as Pokemon)
-              })
-              .catch((err)=>{
-                console.error(err)
-                reject()
-              });
-            }
+            if (err) return reject(err);
+            await this.deleteMovementsAndAbilities(pokemon.id!)
+            const abilities = pokemon.abilities || [];
+            const movements = pokemon.movements || [];
+            await this.insertMovementsAndAbilities(movements,abilities,pokemon.id!)
+            return this.retrieveById(pokemon?.id!)
+            .then((updatedPokemon) => {
+              return resolve(updatedPokemon as Pokemon)
+            })
+            .catch((err)=>{
+              reject()
+            });
           } catch (error) {
-            console.error(error)
             reject()
           }
-
         }
       );
     });
@@ -199,13 +175,10 @@ class PokemonRepositoryMySql implements IPokemonRepository {
     return new Promise(async (resolve, reject) => {
       await this.deleteMovementsAndAbilities(pokemonId)
       connection.query<ResultSetHeader>("DELETE FROM pokemons WHERE id = ?", [pokemonId], (err, res) => {
-        if (err) {
-          reject(err);
-        } else if (res.affectedRows === 0) {
-          reject(new Error("Pokémon no encontrado"));
-        } else {
-          resolve();
-        }
+        console.log({err,res})
+        if (err) return reject(err);
+        if (res.affectedRows === 0) return reject(new Error("Pokémon no encontrado"));
+        resolve();
       });
     });
   }
