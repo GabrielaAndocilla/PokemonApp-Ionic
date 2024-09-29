@@ -12,6 +12,7 @@ export const FormInput = ({
   error,
   className,
   onFocus,
+  placeholder = '',
 }: {
   label: string;
   value: string;
@@ -20,7 +21,9 @@ export const FormInput = ({
   error?: string;
   className?: string;
   onFocus?: FocusEventHandler<HTMLIonInputElement> | undefined;
+  placeholder?: string;
 }) => {
+  const test = () => console.log('a');
   return (
     <div className={className}>
       <IonItem>
@@ -29,8 +32,9 @@ export const FormInput = ({
           type={type}
           value={value}
           onFocus={onFocus}
-          onIonInput={(e) => onChangeAction(e.detail.value!)}
+          onIonInput={test}
           className={css({ mt: 4 })}
+          placeholder={placeholder}
         />
       </IonItem>
       <Show>
