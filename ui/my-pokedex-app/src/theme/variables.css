@@ -2,6 +2,3 @@
 http://ionicframework.com/docs/theming/ */
 
 @layer reset, base, tokens, recipes, utilities;
-body{
-  background-color: aqua;
-}

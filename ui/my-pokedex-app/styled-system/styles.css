@@ -251,9 +251,6 @@
     --line-heights-normal: 1.5;
     --line-heights-relaxed: 1.625;
     --line-heights-loose: 2;
-    --fonts-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    --fonts-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-    --fonts-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     --letter-spacings-tighter: -0.05em;
     --letter-spacings-tight: -0.025em;
     --letter-spacings-normal: 0em;
@@ -281,6 +278,107 @@
     --shadows-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
     --shadows-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
     --shadows-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+    --blurs-sm: 4px;
+    --blurs-base: 8px;
+    --blurs-md: 12px;
+    --blurs-lg: 16px;
+    --blurs-xl: 24px;
+    --blurs-2xl: 40px;
+    --blurs-3xl: 64px;
+    --spacing-0: 0rem;
+    --spacing-1: 0.25rem;
+    --spacing-2: 0.5rem;
+    --spacing-3: 0.75rem;
+    --spacing-4: 1rem;
+    --spacing-5: 1.25rem;
+    --spacing-6: 1.5rem;
+    --spacing-7: 1.75rem;
+    --spacing-8: 2rem;
+    --spacing-9: 2.25rem;
+    --spacing-10: 2.5rem;
+    --spacing-11: 2.75rem;
+    --spacing-12: 3rem;
+    --spacing-14: 3.5rem;
+    --spacing-16: 4rem;
+    --spacing-20: 5rem;
+    --spacing-24: 6rem;
+    --spacing-28: 7rem;
+    --spacing-32: 8rem;
+    --spacing-36: 9rem;
+    --spacing-40: 10rem;
+    --spacing-44: 11rem;
+    --spacing-48: 12rem;
+    --spacing-52: 13rem;
+    --spacing-56: 14rem;
+    --spacing-60: 15rem;
+    --spacing-64: 16rem;
+    --spacing-72: 18rem;
+    --spacing-80: 20rem;
+    --spacing-96: 24rem;
+    --spacing-0\.5: 0.125rem;
+    --spacing-1\.5: 0.375rem;
+    --spacing-2\.5: 0.625rem;
+    --spacing-3\.5: 0.875rem;
+    --sizes-0: 0rem;
+    --sizes-1: 0.25rem;
+    --sizes-2: 0.5rem;
+    --sizes-3: 0.75rem;
+    --sizes-4: 1rem;
+    --sizes-5: 1.25rem;
+    --sizes-6: 1.5rem;
+    --sizes-7: 1.75rem;
+    --sizes-8: 2rem;
+    --sizes-9: 2.25rem;
+    --sizes-10: 2.5rem;
+    --sizes-11: 2.75rem;
+    --sizes-12: 3rem;
+    --sizes-14: 3.5rem;
+    --sizes-16: 4rem;
+    --sizes-20: 5rem;
+    --sizes-24: 6rem;
+    --sizes-28: 7rem;
+    --sizes-32: 8rem;
+    --sizes-36: 9rem;
+    --sizes-40: 10rem;
+    --sizes-44: 11rem;
+    --sizes-48: 12rem;
+    --sizes-52: 13rem;
+    --sizes-56: 14rem;
+    --sizes-60: 15rem;
+    --sizes-64: 16rem;
+    --sizes-72: 18rem;
+    --sizes-80: 20rem;
+    --sizes-96: 24rem;
+    --sizes-0\.5: 0.125rem;
+    --sizes-1\.5: 0.375rem;
+    --sizes-2\.5: 0.625rem;
+    --sizes-3\.5: 0.875rem;
+    --sizes-xs: 20rem;
+    --sizes-sm: 24rem;
+    --sizes-md: 28rem;
+    --sizes-lg: 32rem;
+    --sizes-xl: 36rem;
+    --sizes-2xl: 42rem;
+    --sizes-3xl: 48rem;
+    --sizes-4xl: 56rem;
+    --sizes-5xl: 64rem;
+    --sizes-6xl: 72rem;
+    --sizes-7xl: 80rem;
+    --sizes-8xl: 90rem;
+    --sizes-prose: 65ch;
+    --sizes-full: 100%;
+    --sizes-min: min-content;
+    --sizes-max: max-content;
+    --sizes-fit: fit-content;
+    --sizes-breakpoint-sm: 640px;
+    --sizes-breakpoint-md: 768px;
+    --sizes-breakpoint-lg: 1024px;
+    --sizes-breakpoint-xl: 1280px;
+    --sizes-breakpoint-2xl: 1536px;
+    --animations-spin: spin 1s linear infinite;
+    --animations-ping: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+    --animations-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    --animations-bounce: bounce 1s infinite;
     --colors-current: currentColor;
     --colors-black: #000;
     --colors-white: #fff;
@@ -527,107 +625,13 @@
     --colors-slate-800: #1e293b;
     --colors-slate-900: #0f172a;
     --colors-slate-950: #020617;
-    --blurs-sm: 4px;
-    --blurs-base: 8px;
-    --blurs-md: 12px;
-    --blurs-lg: 16px;
-    --blurs-xl: 24px;
-    --blurs-2xl: 40px;
-    --blurs-3xl: 64px;
-    --spacing-0: 0rem;
-    --spacing-1: 0.25rem;
-    --spacing-2: 0.5rem;
-    --spacing-3: 0.75rem;
-    --spacing-4: 1rem;
-    --spacing-5: 1.25rem;
-    --spacing-6: 1.5rem;
-    --spacing-7: 1.75rem;
-    --spacing-8: 2rem;
-    --spacing-9: 2.25rem;
-    --spacing-10: 2.5rem;
-    --spacing-11: 2.75rem;
-    --spacing-12: 3rem;
-    --spacing-14: 3.5rem;
-    --spacing-16: 4rem;
-    --spacing-20: 5rem;
-    --spacing-24: 6rem;
-    --spacing-28: 7rem;
-    --spacing-32: 8rem;
-    --spacing-36: 9rem;
-    --spacing-40: 10rem;
-    --spacing-44: 11rem;
-    --spacing-48: 12rem;
-    --spacing-52: 13rem;
-    --spacing-56: 14rem;
-    --spacing-60: 15rem;
-    --spacing-64: 16rem;
-    --spacing-72: 18rem;
-    --spacing-80: 20rem;
-    --spacing-96: 24rem;
-    --spacing-0\.5: 0.125rem;
-    --spacing-1\.5: 0.375rem;
-    --spacing-2\.5: 0.625rem;
-    --spacing-3\.5: 0.875rem;
-    --sizes-0: 0rem;
-    --sizes-1: 0.25rem;
-    --sizes-2: 0.5rem;
-    --sizes-3: 0.75rem;
-    --sizes-4: 1rem;
-    --sizes-5: 1.25rem;
-    --sizes-6: 1.5rem;
-    --sizes-7: 1.75rem;
-    --sizes-8: 2rem;
-    --sizes-9: 2.25rem;
-    --sizes-10: 2.5rem;
-    --sizes-11: 2.75rem;
-    --sizes-12: 3rem;
-    --sizes-14: 3.5rem;
-    --sizes-16: 4rem;
-    --sizes-20: 5rem;
-    --sizes-24: 6rem;
-    --sizes-28: 7rem;
-    --sizes-32: 8rem;
-    --sizes-36: 9rem;
-    --sizes-40: 10rem;
-    --sizes-44: 11rem;
-    --sizes-48: 12rem;
-    --sizes-52: 13rem;
-    --sizes-56: 14rem;
-    --sizes-60: 15rem;
-    --sizes-64: 16rem;
-    --sizes-72: 18rem;
-    --sizes-80: 20rem;
-    --sizes-96: 24rem;
-    --sizes-0\.5: 0.125rem;
-    --sizes-1\.5: 0.375rem;
-    --sizes-2\.5: 0.625rem;
-    --sizes-3\.5: 0.875rem;
-    --sizes-xs: 20rem;
-    --sizes-sm: 24rem;
-    --sizes-md: 28rem;
-    --sizes-lg: 32rem;
-    --sizes-xl: 36rem;
-    --sizes-2xl: 42rem;
-    --sizes-3xl: 48rem;
-    --sizes-4xl: 56rem;
-    --sizes-5xl: 64rem;
-    --sizes-6xl: 72rem;
-    --sizes-7xl: 80rem;
-    --sizes-8xl: 90rem;
-    --sizes-prose: 65ch;
-    --sizes-full: 100%;
-    --sizes-min: min-content;
-    --sizes-max: max-content;
-    --sizes-fit: fit-content;
-    --sizes-breakpoint-sm: 640px;
-    --sizes-breakpoint-md: 768px;
-    --sizes-breakpoint-lg: 1024px;
-    --sizes-breakpoint-xl: 1280px;
-    --sizes-breakpoint-2xl: 1536px;
-    --animations-spin: spin 1s linear infinite;
-    --animations-ping: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-    --animations-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    --animations-bounce: bounce 1s infinite;
+    --colors-primary: #69bb7b;
+    --colors-secondary: #EE0F0F;
+    --colors-danger: #EE0F0F;
+    --fonts-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --fonts-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    --fonts-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --fonts-body: system-ui, sans-serif;
     --breakpoints-sm: 640px;
     --breakpoints-md: 768px;
     --breakpoints-lg: 1024px;
@@ -669,23 +673,231 @@
 
 @layer utilities{
 
-  .bg_blue\.400 {
-    background: var(--colors-blue-400);
+  .d_flex {
+    display: flex;
 }
 
-  .bdr_9999px {
-    border-radius: 9999px;
+  .m_3 {
+    margin: var(--spacing-3);
 }
 
-  .p_10px_15px {
-    padding: 10px 15px;
+  .bg_primary {
+    background: var(--colors-primary);
 }
 
-  .bg_blue {
-    background: blue;
+  .c_white {
+    color: var(--colors-white);
 }
 
-  .fs_13px {
-    font-size: 13px;
+  .c_primary {
+    color: var(--colors-primary);
+}
+
+  .bg_\#3B4CCA {
+    background: #3B4CCA;
+}
+
+  .c_\#3B4CCA {
+    color: #3B4CCA;
+}
+
+  .c_red\.500 {
+    color: var(--colors-red-500);
+}
+
+  .c_red\.400 {
+    color: var(--colors-red-400);
+}
+
+  .w_2\/3 {
+    width: 66.666667%;
+}
+
+  .d_block {
+    display: block;
+}
+
+  .w_1\/12 {
+    width: 8.333333%;
+}
+
+  .mx_auto {
+    margin-inline: auto;
+}
+
+  .mx_8 {
+    margin-inline: var(--spacing-8);
+}
+
+  .w_90\% {
+    width: 90%;
+}
+
+  .p_4 {
+    padding: var(--spacing-4);
+}
+
+  .ta_center {
+    text-align: center;
+}
+
+  .w_1\/2 {
+    width: 50%;
+}
+
+  .my_0 {
+    margin-block: var(--spacing-0);
+}
+
+  .h_100vh {
+    height: 100vh;
+}
+
+  .max-w_400px {
+    max-width: 400px;
+}
+
+  .p_20px {
+    padding: 20px;
+}
+
+  .bdr_md {
+    border-radius: var(--radii-md);
+}
+
+  .bx-sh_lg {
+    box-shadow: var(--shadows-lg);
+}
+
+  .w_xl {
+    width: var(--sizes-xl);
+}
+
+  .w_100\% {
+    width: 100%;
+}
+
+  .w_0 {
+    width: var(--sizes-0);
+}
+
+  .w_1\.5 {
+    width: var(--sizes-1\.5);
+}
+
+  .w_10px {
+    width: 10px;
+}
+
+  .w_1 {
+    width: var(--sizes-1);
+}
+
+  .w_1\/3 {
+    width: 33.333333%;
+}
+
+  .bd-w_1px {
+    border-width: 1px;
+}
+
+  .bd-c_primary {
+    border-color: var(--colors-primary);
+}
+
+  .bd-c_\#3B4CCA {
+    border-color: #3B4CCA;
+}
+
+  .bd-c_red\.500 {
+    border-color: var(--colors-red-500);
+}
+
+  .fs_12px {
+    font-size: 12px;
+}
+
+  .fs_24px {
+    font-size: 24px;
+}
+
+  .mt_4 {
+    margin-top: var(--spacing-4);
+}
+
+  .fs_xs {
+    font-size: var(--font-sizes-xs);
+}
+
+  .ml_5 {
+    margin-left: var(--spacing-5);
+}
+
+  .jc_space-around {
+    justify-content: space-around;
+}
+
+  .ai_center {
+    align-items: center;
+}
+
+  .mt_20px {
+    margin-top: 20px;
+}
+
+  .mb_0 {
+    margin-bottom: var(--spacing-0);
+}
+
+  .mt_16px {
+    margin-top: 16px;
+}
+
+  .mb_16px {
+    margin-bottom: 16px;
+}
+
+  .bd-w_2 {
+    border-width: 2px;
+}
+
+  .border-style_dashed {
+    border-style: dashed;
+}
+
+  .jc_center {
+    justify-content: center;
+}
+
+  .bg-c_white {
+    background-color: var(--colors-white);
+}
+
+  .mb_20px {
+    margin-bottom: 20px;
+}
+
+  .fs_xl {
+    font-size: var(--font-sizes-xl);
+}
+
+  .bg-c_primary\.500 {
+    background-color: primary.500;
+}
+
+  .mt_8 {
+    margin-top: var(--spacing-8);
+}
+
+  .mb_9 {
+    margin-bottom: var(--spacing-9);
+}
+
+  .flex-wrap_wrap {
+    flex-wrap: wrap;
+}
+
+  .hover\:bg_primary\.600:is(:hover, [data-hover]) {
+    background: primary.600;
 }
 }

@@ -1,13 +1,4 @@
-import {
-  IonApp,
-  IonRouterOutlet,
-  IonSplitPane,
-  setupIonicReact,
-} from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
-import { Redirect, Route } from 'react-router-dom';
-import Menu from './components/Menu';
-import Page from './pages/Page';
+import { IonApp, setupIonicReact } from '@ionic/react';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -37,8 +28,11 @@ import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/palettes/dark.system.css';
 
 /* Theme variables */
+import { IonReactRouter } from '@ionic/react-router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import '../styled-system/styles.css';
+import Routing from './Routing';
+import { AuthProvider } from './contexts/authentication';
 import './theme/variables.css';
 
 setupIonicReact();
@@ -49,19 +43,11 @@ const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <IonApp>
-        <IonReactRouter>
-          <IonSplitPane contentId="main">
-            <Menu />
-            <IonRouterOutlet id="main">
-              <Route path="/" exact={true}>
-                <Redirect to="/Inbox" />
-              </Route>
-              <Route path="/:name" exact={true}>
-                <Page />
-              </Route>
-            </IonRouterOutlet>
-          </IonSplitPane>
-        </IonReactRouter>
+        <AuthProvider>
+          <IonReactRouter>
+            <Routing />
+          </IonReactRouter>
+        </AuthProvider>
       </IonApp>
     </QueryClientProvider>
   );
