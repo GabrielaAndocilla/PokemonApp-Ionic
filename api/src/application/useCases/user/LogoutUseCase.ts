@@ -1,4 +1,4 @@
-import  ITokenRepository from "../../../domain/repositories/ITokenRepository";
+import ITokenRepository from "@domains/repositories/ITokenRepository";
 
 export class LogoutUseCase {
   constructor(private tokenRepository: ITokenRepository) {}

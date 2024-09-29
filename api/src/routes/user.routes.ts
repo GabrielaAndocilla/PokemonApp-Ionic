@@ -1,9 +1,9 @@
 import { Router } from "express";
 
-import UserController from "../infrastructure/controllers/UserController";
-import AuthMiddleware from "../infrastructure/middlewares/authMiddleware";
-import UserRepositoryMySql from "../infrastructure/repositories/UserRepositoryMySql";
-import TokenRepositoryMySql from "../infrastructure/repositories/TokenRepositoryMySql";
+import UserController from "@controllers/UserController";
+import AuthMiddleware from "@middleware/authMiddleware";
+import TokenRepositoryMySql from "@repositories/TokenRepositoryMySql";
+import UserRepositoryMySql from "@repositories/UserRepositoryMySql";
 
 class UserRoutes {
   router = Router()
@@ -17,7 +17,7 @@ class UserRoutes {
 
   initializedRoutes(){
     this.router.post('/register', this.controller.register)
-    this.router.get("/login", this.controller.login)
+    this.router.post("/login", this.controller.login)
     this.router.post("/logout",AuthMiddleware.verifyToken, this.controller.logOut)
 
   }

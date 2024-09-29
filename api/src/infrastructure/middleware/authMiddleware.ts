@@ -1,7 +1,7 @@
+import ITokenRepository from '@domains/repositories/ITokenRepository';
+import TokenRepositoryMySql from '@repositories/TokenRepositoryMySql';
 import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import ITokenRepository from '../../domain/repositories/ITokenRepository';
-import TokenRepositoryMySql from '../repositories/TokenRepositoryMySql';
 
 export interface ExtendReq extends Request {
   user?: any;

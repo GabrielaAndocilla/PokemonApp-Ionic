@@ -1,4 +1,4 @@
-import User from "../entities/User";
+import User from "@domains/entities/User";
 
 export default interface IUserRepository {
   register(user: User): Promise<boolean>;

@@ -1,12 +1,11 @@
+import ITokenRepository from "@domains/repositories/ITokenRepository";
+import IUserRepository from "@domains/repositories/IUserRepository";
+import { ExtendReq } from "@middleware/authMiddleware";
+import { LoginUser } from "@useCases/user/LoginUser";
+import { LogoutUseCase } from "@useCases/user/LogoutUseCase";
+import { RegisterUser } from "@useCases/user/RegisterUser";
 import { Request, Response } from "express";
 import jwt from 'jsonwebtoken';
-import { LoginUser } from "../../application/use_cases/user/LoginUser";
-import { LogoutUseCase } from "../../application/use_cases/user/LogoutUseCase";
-import { RegisterUser } from "../../application/use_cases/user/RegisterUser";
-import ITokenRepository from "../../domain/repositories/ITokenRepository";
-import IUserRepository from "../../domain/repositories/IUserRepository";
-import { ExtendReq } from "../middlewares/authMiddleware";
-
 
 export default class UserController {
   private userRepository: IUserRepository;
@@ -40,9 +39,9 @@ export default class UserController {
       const user = await loginUser.execute(req.body)
       if(!user) return res.status(401).json({ error: 'Authentication failed' });
       const token = jwt.sign({ userId: user.id }, JWT_SECRET, {
-      expiresIn: '1h',
+      expiresIn: '3h',
       });
-      return res.status(200).json({ token });
+      return res.status(200).json({ token, user: {name:user.name, email:user.email} });
     } catch (err) {
       res.status(500).json({
         message: "Internal Server Error!"

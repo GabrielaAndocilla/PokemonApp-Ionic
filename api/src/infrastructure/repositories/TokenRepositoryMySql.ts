@@ -1,9 +1,9 @@
+import ITokenRepository from "@domains/repositories/ITokenRepository";
 import { ResultSetHeader, RowDataPacket } from "mysql2";
-import ITokenRepository from "../../domain/repositories/ITokenRepository";
 import connection from "../db";
 
-
 export default class TokenRepositoryMySql implements ITokenRepository {
+
   invalidateToken(token: string): Promise<void> {
     return new Promise((resolve,reject)=> {
       connection.query<ResultSetHeader>("INSERT INTO invalidated_tokens (token) VALUES (?)",[token],(err, res) => {

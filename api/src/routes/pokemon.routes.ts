@@ -1,8 +1,7 @@
+import PokemonController from "@controllers/PokemonController";
+import AuthMiddleware from "@middleware/authMiddleware";
+import PokemonRepositoryMySql from "@repositories/PokemonRepositoryMySql";
 import { Router } from "express";
-import PokemonController from "../infrastructure/controllers/PokemonController";
-import AuthMiddleware from "../infrastructure/middlewares/authMiddleware";
-import PokemonRepositoryMySql from "../infrastructure/repositories/PokemonRepositoryMySql";
-import TokenRepositoryMySql from "../infrastructure/repositories/TokenRepositoryMySql";
 
 class PokemonRoutes {
   router = Router()
@@ -16,9 +15,10 @@ class PokemonRoutes {
   initializedRoutes(){
     this.router.post('/', AuthMiddleware.verifyToken,this.controller.create)
     this.router.get("/", AuthMiddleware.verifyToken,this.controller.findAll);
-    this.router.get("/:id", this.controller.findById);
-
-
+    this.router.get("/:id",AuthMiddleware.verifyToken, this.controller.findById);
+    this.router.put("/:id",AuthMiddleware.verifyToken, this.controller.update);
+    this.router.patch("/favorite/:id",AuthMiddleware.verifyToken, this.controller.setAsFavorite);
+    this.router.delete("/:id",AuthMiddleware.verifyToken, this.controller.delete);
   }
 }
 

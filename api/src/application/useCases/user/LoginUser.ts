@@ -1,7 +1,6 @@
+import User from "@domains/entities/User";
+import IUserRepository from "@domains/repositories/IUserRepository";
 import bcrypt from "bcrypt";
-import User from "../../../domain/entities/User";
-import IUserRepository from "../../../domain/repositories/IUserRepository";
-
 
 export class LoginUser {
   private userRepository: IUserRepository;
