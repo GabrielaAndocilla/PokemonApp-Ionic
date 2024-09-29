@@ -6,19 +6,17 @@ import { DeletePokemon } from "@useCases/pokemon/DeletePokemon";
 import { FindPokemon } from "@useCases/pokemon/FindPokemon";
 import { GetAllPokemons } from "@useCases/pokemon/GetAllPokemons";
 import { SetAsFavorite } from "@useCases/pokemon/SetAsFavorite";
-import { UpdatedPokemon } from "@useCases/pokemon/UpdatePokemon";
+import { UpdatedPokemon } from "@useCases/pokemon/UpdatedPokemon";
 import { Request, Response } from "express";
 
 export default class PokemonController {
     private pokemonRepository: IPokemonRepository;
 
   constructor(pokemonRepository: IPokemonRepository) {
-    console.log('pls')
     this.pokemonRepository = pokemonRepository;
   }
 
   create = async (req: ExtendReq, res: Response) =>{
-    console.log('pls2')
     try {
       const createPokemon = new CreatePokemon(this.pokemonRepository);
       await createPokemon.execute(req.body, req.user.userId);
@@ -71,7 +69,6 @@ export default class PokemonController {
   update = async (req: Request, res: Response) =>{
     try {
       const { id } = req.params;
-      console.log('COntrolling Updating')
       const updatePokemon = new UpdatedPokemon(this.pokemonRepository);
       const pokemon: Pokemon |undefined  = await updatePokemon.execute({
         id,
@@ -80,7 +77,7 @@ export default class PokemonController {
         message: "Pokemon Not found"
       });
       return res.status(201).json({
-        message: "Successfully find Pokemon",
+        message: "Successfully update Pokemon",
         data: pokemon
       });
     } catch (err) {
@@ -111,7 +108,7 @@ export default class PokemonController {
       const setAsFavorite = new SetAsFavorite(this.pokemonRepository);
       await setAsFavorite.execute(parseInt(id));
       return res.status(201).json({
-        message: "Successfully delete Pokemon",
+        message: "Successfully setAsFavorite Pokemon",
       });
     } catch (err) {
       res.status(500).json({
