@@ -77,11 +77,13 @@ export const Routing: FC = () => {
         />
         <PrivateRoute
           path="/pokemons"
+          exact
           component={PokemonListPage}
           isAuthenticated={isAuthenticated}
         />
         <PrivateRoute
           path="/pokemon/:name"
+          exact
           component={PokemonDetailPage}
           isAuthenticated={isAuthenticated}
         />
@@ -98,6 +100,7 @@ export const Routing: FC = () => {
         />
         <PrivateRoute
           path="/pokemon/all"
+          exact
           component={CustomPokemonList}
           isAuthenticated={isAuthenticated}
         />

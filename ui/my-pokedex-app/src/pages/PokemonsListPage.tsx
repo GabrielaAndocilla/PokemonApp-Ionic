@@ -17,6 +17,7 @@ import { css } from '../../styled-system/css';
 import { Button } from '../components/Button';
 import { Show } from '../components/Show';
 import { usePokemonsPokeApi } from '../hooks/usePokemonsPokeApi';
+import { PokemonPokeApi } from '../models/Pokemon';
 
 const offset = 20;
 const PokemonListPage: React.FC = () => {
@@ -52,7 +53,7 @@ const PokemonListPage: React.FC = () => {
           <Show.When isTrue={!isFetching}>
             <>
               <IonList inset={true}>
-                {pokemons?.results.map((todo: any, i: number) => (
+                {pokemons?.results.map((todo: PokemonPokeApi, i: number) => (
                   <IonItem key={i}>
                     <IonLabel>{todo.name}</IonLabel>
                     <Link to={`/pokemon/${todo.name}`}> Read More</Link>
