@@ -20,7 +20,7 @@ import { usePokemonsPokeApi } from '../hooks/usePokemonsPokeApi';
 
 const offset = 20;
 const PokemonListPage: React.FC = () => {
-  const [fetchUrl, setFetchUrl] = useState(`https://pokeapi.co/api/v2/pokemon`);
+  const [fetchUrl, setFetchUrl] = useState(`${import.meta.env.VITE_POKE_API}`);
   const [currentPage, setCurrent] = useState(1);
   const [startIndexPage, setStartIndexPage] = useState(1);
   const { data: res, isFetching } = usePokemonsPokeApi(fetchUrl);
@@ -32,11 +32,10 @@ const PokemonListPage: React.FC = () => {
     setCurrent(page);
     const startIndex = (page - 1) * offset;
     setFetchUrl(
-      `https://pokeapi.co/api/v2/pokemon?offset=${startIndex}&limit=${offset}`
+      `${import.meta.env.VITE_POKE_API}?offset=${startIndex}&limit=${offset}`
     );
   };
 
-  console.log({ startIndexPage, currentPage });
   return (
     <IonPage>
       <IonHeader>
@@ -77,7 +76,7 @@ const PokemonListPage: React.FC = () => {
                   }}
                   variant="primary"
                 >
-                  Anterior
+                  Previous
                 </Button>
                 {arrayPages
                   .slice(startIndexPage - 1, startIndexPage + 5)

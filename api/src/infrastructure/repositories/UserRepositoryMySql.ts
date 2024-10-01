@@ -5,7 +5,6 @@ import connection from "../db";
 
 class UserRepositoryMySql implements IUserRepository {
   register(user: User): Promise<boolean> {
-    console.log('a')
     return new Promise((resolve,reject)=> {
       connection.query<ResultSetHeader>("INSERT INTO users (name, email, password) VALUES(?,?,?)",[user.name, user.email, user.password],(err, res) => {
         if (err) reject(err);

@@ -14,7 +14,7 @@ export const useSetFavoritePokemon = () => {
   };
 
   return useMutation({
-    mutationFn: (id:string):Promise<CustomPokemon> => axios.patch(`http://localhost:8081/api/pokemon/favorite/${id}`,{}, config),
+    mutationFn: (id:string):Promise<CustomPokemon> => axios.patch(`${import.meta.env.VITE_BACKEND_HOST}/pokemon/favorite/${id}`,{}, config),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['pokemons'] })
   })
 }

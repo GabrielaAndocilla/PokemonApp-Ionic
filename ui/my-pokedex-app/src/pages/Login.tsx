@@ -13,7 +13,7 @@ import {
 } from './Login.styles';
 
 const Login: React.FC = () => {
-  const { login, isAuthenticated } = useAuth();
+  const { login } = useAuth();
   const history = useHistory();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -37,7 +37,6 @@ const Login: React.FC = () => {
         <div className={containerStyle}>
           <div className={formContainerStyle}>
             <h2 className={headerStyle}>Login</h2>
-
             {error && (
               <IonText color="danger" className={errorStyle}>
                 {error}
@@ -46,6 +45,7 @@ const Login: React.FC = () => {
             <FormInput
               type="email"
               label="Email"
+              placeholder="email@hotmail.com"
               onChangeAction={setEmail}
               value={email}
               className={inputItemStyle}
@@ -53,6 +53,7 @@ const Login: React.FC = () => {
             <FormInput
               type="password"
               label="Password"
+              placeholder="Add a password"
               onChangeAction={setPassword}
               value={password}
               className={inputItemStyle}

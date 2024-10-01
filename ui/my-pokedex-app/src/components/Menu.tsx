@@ -12,6 +12,7 @@ import {
 import { create, listOutline, listSharp, logOut } from 'ionicons/icons';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import { css } from '../../styled-system/css';
 import { useAuth } from '../contexts/authentication';
 import './Menu.css';
 
@@ -44,15 +45,15 @@ const appPages: AppPage[] = [
 ];
 
 const Menu: React.FC = () => {
-  const { logout } = useAuth();
+  const { logout, userInfo } = useAuth();
   const location = useLocation();
 
   return (
     <IonMenu contentId="main" type="overlay">
       <IonContent>
         <IonList id="inbox-list">
-          <IonListHeader>Inbox</IonListHeader>
-          <IonNote>hi@ionicframework.com</IonNote>
+          <IonListHeader>PokeApp</IonListHeader>
+          <IonNote>{userInfo?.email}</IonNote>
           {appPages.map((appPage, index) => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
@@ -82,6 +83,7 @@ const Menu: React.FC = () => {
               lines="none"
               detail={false}
               onClick={logout}
+              className={css({ cursor: 'pointer' })}
             >
               <IonIcon
                 aria-hidden="true"

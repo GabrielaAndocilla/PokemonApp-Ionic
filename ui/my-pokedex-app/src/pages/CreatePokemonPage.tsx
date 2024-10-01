@@ -35,7 +35,7 @@ export const CreatePokemonPage = () => {
     icon: saveOutline,
     color: 'primary',
   });
-  const { data: res } = usePokemon(id);
+  const { data: res } = id ? usePokemon(id) : { data: undefined };
   const { mutateAsync: createPokemon } = useCreatePokemon();
   const { mutateAsync: savePokemon } = useSavePokemon();
 
@@ -44,7 +44,6 @@ export const CreatePokemonPage = () => {
   useEffect(() => {
     if (!data) return;
     const { name, height, abilities, movements } = data.data;
-    console.log({ name, height, abilities, movements });
     setName(name);
     setHeight(height);
     setAbilities(abilities);

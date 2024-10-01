@@ -14,7 +14,7 @@ export const useDeletePokemon = () => {
   };
 
   return useMutation({
-    mutationFn: (id:string):Promise<CustomPokemon> => axios.delete(`http://localhost:8081/api/pokemon/${id}`, config),
+    mutationFn: (id:string):Promise<CustomPokemon> => axios.delete(`${import.meta.env.VITE_BACKEND_HOST}/pokemon/${id}`, config),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['pokemons'] })
   })
 }

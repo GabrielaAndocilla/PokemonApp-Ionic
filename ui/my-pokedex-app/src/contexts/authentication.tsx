@@ -17,18 +17,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
     () => token !== ''
   );
-  const [userInfo, setUserInfo] = useLocalStorage('user', undefined);
-  console.log({ isAuthenticated });
+  const [userInfo, setUserInfo, removeUser] = useLocalStorage(
+    'user',
+    undefined
+  );
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
       const { status, data } = await axios.post(
-        `http://localhost:8081/api/login`,
+        `${import.meta.env.VITE_BACKEND_HOST}/login`,
         {
           email,
           password,
         }
       );
-      console.log({ status });
       if (status !== 200) return false;
       setIsAuthenticated(true);
       setUserInfo(data.user);
@@ -41,7 +42,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const logout = async () => {
     await axios.post(
-      `http://localhost:8081/api/logout`,
+      `${import.meta.env.VITE_BACKEND_HOST}/logout`,
       {},
       {
         headers: {
@@ -52,6 +53,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setIsAuthenticated(false);
     setUserInfo(undefined);
     removeToken();
+    removeUser();
     setIsAuthenticated(false);
   };
 

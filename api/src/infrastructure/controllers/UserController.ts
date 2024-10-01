@@ -61,8 +61,7 @@ export default class UserController {
 
       return res.status(200).json({ message:'Successfully Logout' });
     } catch (err) {
-      console.log('error logout', err)
-      res.status(500).json({
+      return res.status(500).json({
         message: "Internal Server Error!"
       });
     }

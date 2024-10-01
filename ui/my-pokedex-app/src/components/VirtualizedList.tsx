@@ -7,7 +7,7 @@ export interface WindowProps {
   children: Array<JSX.Element>;
   gap?: number;
 }
-const bufferedItems = 2;
+const bufferedItems = 4;
 const VirtualizedList: FC<WindowProps> = ({
   rowHeight,
   children,
@@ -15,7 +15,6 @@ const VirtualizedList: FC<WindowProps> = ({
 }) => {
   const [containerRef, { height }] = useElementSize<HTMLUListElement>();
   const [scrollPosition, setScrollPosition] = useState(0);
-
   const visibleChildren = useMemo(() => {
     const startIndex = Math.max(
       Math.floor(scrollPosition / rowHeight) - bufferedItems,
@@ -25,6 +24,7 @@ const VirtualizedList: FC<WindowProps> = ({
       Math.ceil((scrollPosition + height) / rowHeight - 1) + bufferedItems,
       children.length - 1
     );
+
     return children.slice(startIndex, endIndex + 1).map((child, index) =>
       cloneElement(child, {
         style: {

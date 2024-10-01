@@ -131,7 +131,6 @@ class PokemonRepositoryMySql implements IPokemonRepository {
 
   updateFavorite(pokemonId: number, status:boolean): Promise<void> {
     return new Promise((resolve, reject) => {
-      console.log({status, pokemonId})
       connection.query(
         "UPDATE pokemons SET is_favorite = ? WHERE id = ? ",
         [status, pokemonId],
@@ -175,7 +174,6 @@ class PokemonRepositoryMySql implements IPokemonRepository {
     return new Promise(async (resolve, reject) => {
       await this.deleteMovementsAndAbilities(pokemonId)
       connection.query<ResultSetHeader>("DELETE FROM pokemons WHERE id = ?", [pokemonId], (err, res) => {
-        console.log({err,res})
         if (err) return reject(err);
         if (res.affectedRows === 0) return reject(new Error("Pokémon no encontrado"));
         resolve();

@@ -4,11 +4,10 @@ import { useAuth } from "../contexts/authentication";
 
 export const usePokemon = (id:string) => {
   const { token } = useAuth();
-  console.log('usePokemon',id)
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: `http://localhost:8081/api/pokemon/${id}`,
+    url: `${import.meta.env.VITE_BACKEND_HOST}/pokemon/${id}`,
     headers: {
       Authorization: `Bearer ${token}`,
     },

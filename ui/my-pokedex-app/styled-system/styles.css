@@ -717,6 +717,10 @@
     display: block;
 }
 
+  .cursor_pointer {
+    cursor: pointer;
+}
+
   .w_1\/12 {
     width: 8.333333%;
 }
@@ -727,6 +731,10 @@
 
   .mx_8 {
     margin-inline: var(--spacing-8);
+}
+
+  .w_1\/3 {
+    width: 33.333333%;
 }
 
   .w_90\% {
@@ -775,26 +783,6 @@
 
   .w_100\% {
     width: 100%;
-}
-
-  .w_0 {
-    width: var(--sizes-0);
-}
-
-  .w_1\.5 {
-    width: var(--sizes-1\.5);
-}
-
-  .w_10px {
-    width: 10px;
-}
-
-  .w_1 {
-    width: var(--sizes-1);
-}
-
-  .w_1\/3 {
-    width: 33.333333%;
 }
 
   .bd-w_1px {

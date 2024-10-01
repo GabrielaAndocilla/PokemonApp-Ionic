@@ -14,11 +14,14 @@ const SignUp: React.FC = () => {
   const [password, setPassword] = useState('');
 
   const handleSignUp = async () => {
-    const { status } = await axios.post(`http://localhost:8081/api/register`, {
-      name: nickName,
-      email,
-      password,
-    });
+    const { status } = await axios.post(
+      `${import.meta.env.VITE_BACKEND_HOST}/register`,
+      {
+        name: nickName,
+        email,
+        password,
+      }
+    );
     if (status === 201) return history.push('/login');
   };
 

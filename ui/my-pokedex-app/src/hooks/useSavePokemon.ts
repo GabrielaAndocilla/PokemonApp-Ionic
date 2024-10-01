@@ -11,7 +11,7 @@ export const useSavePokemon = () => {
     }
   };
   return useMutation({
-    mutationFn: (data:any):Promise<any> =>  axios.put(`http://localhost:8081/api/pokemon/${data.id}`,data,config),
-    onSuccess: (res) =>  queryClient.invalidateQueries({ queryKey: ['pokemons',res.data.id] })
+    mutationFn: (data:any):Promise<any> =>  axios.put(`${import.meta.env.VITE_BACKEND_HOST}/pokemon/${data.id}`,data,config),
+    onSuccess: (res) =>  queryClient.invalidateQueries({ queryKey: ['pokemons'] })
   })
 }

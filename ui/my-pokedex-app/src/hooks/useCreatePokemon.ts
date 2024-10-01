@@ -14,7 +14,7 @@ export const useCreatePokemon = () => {
   };
 
   return useMutation({
-    mutationFn: (data:CustomPokemon):Promise<CustomPokemon> => axios.post(`http://localhost:8081/api/pokemon`,data, config),
+    mutationFn: (data:CustomPokemon):Promise<CustomPokemon> => axios.post(`${import.meta.env.VITE_BACKEND_HOST}/pokemon`,data, config),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['pokemons'] })
   })
 }

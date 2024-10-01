@@ -2,7 +2,7 @@ import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useAuth } from "../contexts/authentication";
 
-export const usePokemons = ({name}:{name:string}) => {
+export const usePokemons = ({name}:{name?:string}) => {
   const { token } = useAuth();
   let query = ''
   let config = {
@@ -14,7 +14,7 @@ export const usePokemons = ({name}:{name:string}) => {
     query += `?name=${name}`
   return useQuery({
     queryKey: ['pokemons',name],
-    queryFn: () => axios.get(`http://localhost:8081/api/pokemon${query}`,config),
+    queryFn: () => axios.get(`${import.meta.env.VITE_BACKEND_HOST}/pokemon${query}`,config),
     placeholderData: keepPreviousData
 
   })

@@ -30,7 +30,7 @@ const Home: React.FC = () => {
             Login
           </Button>
           <Button
-            onClickAction={() => history.push('/signup')}
+            onClickAction={() => history.push('/signUp')}
             variant="primary_outline"
           >
             Sign Up

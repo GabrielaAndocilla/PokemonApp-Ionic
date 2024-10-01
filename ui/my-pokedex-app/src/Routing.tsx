@@ -74,8 +74,6 @@ export const Routing: FC = () => {
           exact
           isAuthenticated={isAuthenticated}
         />
-
-        <Menu />
         <PrivateRoute
           path="/pokemons"
           component={PokemonListPage}
