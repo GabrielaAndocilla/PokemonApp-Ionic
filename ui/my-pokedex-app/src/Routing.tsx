@@ -26,7 +26,7 @@ const PrivateRoute: FC<PrivateRouteProps> = ({
     <Route
       {...rest}
       render={(props) =>
-        isAuthenticated ? <Component {...props} /> : <Redirect to="/login" />
+        isAuthenticated ? <Component {...props} /> : <Redirect to="/" />
       }
     />
   );
@@ -40,6 +40,7 @@ const AuthRoute: FC<PrivateRouteProps> = ({
   return (
     <Route
       {...rest}
+      exact
       render={(props) =>
         isAuthenticated ? <Redirect to="/pokemons" /> : <Component {...props} />
       }
@@ -58,8 +59,8 @@ export const Routing: FC = () => {
       <IonRouterOutlet id="main">
         <AuthRoute
           path="/"
-          component={Home}
           exact
+          component={Home}
           isAuthenticated={isAuthenticated}
         />
         <AuthRoute

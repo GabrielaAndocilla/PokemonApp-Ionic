@@ -43,6 +43,7 @@ const ItemListForm: FC<{
           type="button"
           onClickAction={(e) => {
             e.stopPropagation();
+            if (newItem === '') return;
             items.push(newItem);
             setNewItem('');
           }}

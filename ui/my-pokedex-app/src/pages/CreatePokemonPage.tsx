@@ -42,7 +42,7 @@ export const CreatePokemonPage = () => {
   const data = res?.data;
 
   useEffect(() => {
-    if (!data) return;
+    if (!data) return resetValues();
     const { name, height, abilities, movements } = data.data;
     setName(name);
     setHeight(height);
@@ -65,6 +65,13 @@ export const CreatePokemonPage = () => {
   const deleteError = (key: string) => {
     delete errors[key];
     setErrors({ ...errors });
+  };
+
+  const resetValues = () => {
+    setName('');
+    setHeight('');
+    setAbilities([]);
+    setMovements([]);
   };
 
   const submit = async () => {
