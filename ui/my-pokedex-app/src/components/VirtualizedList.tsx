@@ -7,7 +7,7 @@ export interface WindowProps {
   children: Array<JSX.Element>;
   gap?: number;
 }
-const bufferedItems = 4;
+const bufferedItems = 5;
 const VirtualizedList: FC<WindowProps> = ({
   rowHeight,
   children,
