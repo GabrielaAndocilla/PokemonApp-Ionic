@@ -2,6 +2,7 @@
   # Pokedex App 📝
 This app allows users to create their own Pokémon inspired by existing ones. Users can view existing Pokémon in a paginated table. To check the details, simply click "Read More" for each item, providing inspiration for your custom Pokémon creations. Users can create, edit, list, select favorites, search by name, and delete their custom Pokémon.
 
+You could check the deployed app : https://pokedex-app.hakensoft.com
 
   ## Tech Stack 🚀
 The project consists of two main parts: the backend and the frontend.
